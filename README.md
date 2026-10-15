@@ -2,6 +2,8 @@
 
 A separate robot-circuit combat prototype. Build a control circuit inside a shaped chassis, then pilot that exact circuit against an AI robot. Playing requires no dependencies, accounts, paid services, backend, multiplayer, or external assets. This directory is independent of RSI and the other games.
 
+**Play online: https://tandemtales.github.io/crosswired/**
+
 ## Run locally
 
 Requires Node.js 20+ (tested on the installed Node 24.14.0). In PowerShell:
@@ -36,7 +38,7 @@ Open **http://127.0.0.1:4187**. Stop the server with Ctrl+C. No `npm install` or
 - The arena uses turning plus forward/reverse movement, bounded walls, robot separation, forward projectiles, cooldowns and projectile damage. AI pursues, aims and fires slower projectiles with a short opening grace period. Later bouts increase AI health (65 / 80 / 95). This is an intentionally forgiving sparring opponent; holding fire from the starting line can win. Difficulty balance is not final.
 - A bout lasts at most 90 seconds. A timeout offers edit/retry. Enemy and player shots are separate colors. Player damage is 10 per hit, hostile damage 12. Armor adds health only while physically installed.
 - Salvage is bounded to two selections per completed three-bout run. Full deck rules, purchasing, sensors, advanced logic, custom key assignment, persistence beyond one browser, sound, varied weapons/arenas and multiplayer are outside this slice.
-- The authorized publication target is private `TandemTales/crosswired` with a public GitHub Pages playable build. The repository must remain private. No plan purchase or expanded authorization is permitted. See `DEPLOYMENT.md` for the actual publication status.
+- The source repository `TandemTales/crosswired` and its GitHub Pages playable build are public following explicit owner approval. No plan purchase, new credentials or separate publishing repository was needed. See `DEPLOYMENT.md` for publication status and verification.
 
 ## Tests and inspection
 
@@ -53,6 +55,8 @@ node tests/browser.smoke.mjs
 ```
 
 The browser script uses an **existing** Playwright installation and browser; it downloads nothing. The defaults match this host's existing Python 3.12 Playwright package and Chromium 1155. Set `PLAYWRIGHT_PACKAGE`, `CHROMIUM_PATH`, and optionally `CROSSWIRED_URL` for another machine. Playwright is not a game runtime dependency. Network-restricted shells may require running both server and QA outside that sandbox to allow loopback access.
+
+For deployed verification, set `CROSSWIRED_URL=https://tandemtales.github.io/crosswired/` and `CROSSWIRED_ARTIFACT_DIR=.preview/public` before running the browser script. It uses a fresh browser context without authentication.
 
 `window.crosswired.snapshot()` returns a copy of the current design, match, mode and signal values for read-only browser inspection. `.preview/` contains QA screenshots and results. See `QA.md` for actual verification and tool limits.
 

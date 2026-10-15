@@ -1,5 +1,7 @@
 # Crosswired — local verification
 
+This records the initial local verification before repository upload. The later successful public deployment and anonymous gameplay checks are recorded in [DEPLOYMENT.md](DEPLOYMENT.md).
+
 Verified on 2026-10-15, Windows, Node.js 24.14.0, installed Chromium 1155 through the existing Playwright installation. No packages or browsers were downloaded. All implementation and generated evidence are inside `C:\dev\tandem_tales\crosswired`. No other project was edited, and no GitHub or deployment operation ran.
 
 ## Results

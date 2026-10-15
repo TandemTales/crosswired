@@ -1,33 +1,37 @@
 # Crosswired publication status
 
-## Private source: uploaded
+## Public game and source
 
-- Repository: https://github.com/TandemTales/crosswired
-- Visibility: **private**, verified through GitHub's repository API before upload.
+- **Play: https://tandemtales.github.io/crosswired/**
+- Source: https://github.com/TandemTales/crosswired
+- Visibility: **public**, explicitly approved by the owner after the initial private-repository plan blocker.
 - Branch: `main`.
+- Pages source: `main` / `/docs`; HTTPS enforced; Pages API reports `built` and `public: true`.
 - Prototype and Pages-ready build commit: `01eebf3c56ebde97c7907bf85653bd42f248d771`.
-- Publication was explicitly authorized on 2026-10-15, including the private repository and public playable GitHub Pages build.
+- First successful public deployment commit: `7bddc0e37174a9d86b7e12d09e0e8d36dda47596`.
+- [First successful deployment workflow](https://github.com/TandemTales/crosswired/actions/runs/38796194838).
 
-## Public GitHub Pages: blocked by the existing plan
+## Verification on 2026-10-15
 
-The organization API reports TandemTales uses the `free` plan. Creating a public Pages site from `main` / `/docs` returned HTTP **422**:
+- All five public runtime assets returned HTTP **200** without authentication and their SHA-256 hashes matched the local tested `docs/` build exactly.
+- Full deployed Chromium browser smoke suite: **14/14 passing** in a fresh anonymous context. This covered visible signal propagation, invalid wiring, placement, persistence, relay-to-weapon behavior, keyboard movement, pause/resume, a complete three-bout run with salvaged clock and armor, AI victory/loss, six edit/retry cycles, chassis changes and a 390px narrow-screen layout.
+- No browser page exceptions or failed asset responses.
+- Local engine suite: **10/10 passing**, including 100 deterministic reset/edit/retry cycles.
+- `npm run build` copies and byte-verifies the five runtime assets into `docs/`, plus `.nojekyll`. Public Pages contains runtime assets only; the now-public source repository also contains documentation and tests.
+- Local evidence: `.preview/public/http-results.json`, `.preview/public/browser-results.json`, and five deployed desktop/mobile screenshots. These generated QA files remain ignored by Git.
 
-> Your current plan does not support GitHub Pages for this repository.
+## Audit before public visibility
 
-GitHub's [Pages availability documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages) states that GitHub Free for organizations supports Pages in public repositories; private repositories require an eligible paid plan. The repository must remain private, and no purchase or authorization expansion is permitted by this task. No plan was purchased, repository visibility changed, credentials created, or alternate publication route used.
+Reviewed both existing commits, all 21 tracked paths and 41 tracked file versions before changing visibility. Credential-pattern scanning found no credentials. Manual content review found no material private user data or inappropriate artifacts. Generated screenshots, local QA output, dependencies and environment/credential files were absent from tracked history. The optional browser test contains host-specific development paths, which are not credentials or private application data.
 
-**No public playable deployment exists from this publication attempt.** `https://tandemtales.github.io/crosswired/` is only the expected default location if Pages becomes available; it is not a delivered playable URL.
+## Initial blocker and resolution
 
-## Build and checks
+The first private-repository Pages creation attempt returned HTTP **422**, “Your current plan does not support GitHub Pages for this repository.” TandemTales uses GitHub Free. GitHub's [Pages availability documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages) confirms Free supports public-repository Pages.
 
-- `npm test`: 10 engine tests passing after publication preparation.
-- Existing browser verification: 14 checks passing, including a complete three-bout run; see [QA.md](QA.md).
-- `npm run build`: copies and byte-verifies the five runtime assets into `docs/`, plus `.nojekyll`.
-- Public build contains only `index.html`, `style.css`, `app.js`, `engine.js`, `favicon.svg` and `.nojekyll`. It excludes QA evidence, tests, local server and repository documentation.
-- `git diff --cached --check` passed before the prototype commit.
+The owner subsequently explicitly approved making the existing repository public to publish it. After the audit, that exact repository was made public and Pages setup succeeded. No plan was purchased, credentials created, authorization expanded, or separate `-play` repository created. No other project was modified.
 
 ## Local play remains available
 
 Run `npm start` from this directory and open http://127.0.0.1:4187. No installation or paid service is needed.
 
-If an eligible organization plan is already provided later, Pages can be enabled from branch `main`, folder `/docs`, and public deployment must then be verified. The present task does not authorize buying that plan or making the source repository public.
+See [QA.md](QA.md) for the initial local verification and known prototype limits.
