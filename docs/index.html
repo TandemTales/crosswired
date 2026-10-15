@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#101a20"><title>Crosswired — Build your controls</title><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><a class="brand" href="./"><span class="brand-icon">⌁</span> CROSSWIRED<span class="version">LOCAL PROTOTYPE / 01</span></a><span class="local"><i></i> OFFLINE · AI OPPONENT</span></header>
+<main>
+<section class="intro"><div><div class="eyebrow">THE MACHINE IS THE CONTROL SCHEME</div><h1>Build it. Wire it. <em>Fight it.</em></h1><p>Every command has to find its way through your chassis.</p></div><button id="helpButton" class="quiet">How to play <span>↗</span></button></section>
+<div class="workspace">
+<section class="panel workshop"><div class="panel-heading"><div><span class="eyebrow">01 / WORKSHOP</span><h2>Your circuit</h2></div><span id="modeTag" class="tag">BENCH LIVE</span></div>
+<div class="chassis-row"><label>CHASSIS <select id="chassis"><option value="scout">Kite / Scout · 8 × 6</option><option value="hauler">Brick / Hauler · 9 × 6</option></select></label><span id="spaceUsed"></span></div>
+<div class="toolbar"><div class="segmented"><button data-tool="wire" class="selected">⌁ Wire</button><button data-tool="move">↔ Move</button><button data-tool="remove">− Remove</button></div><button id="clearWires" class="quiet small">Clear wires</button></div>
+<div class="board-scroll"><div id="board" aria-label="Chassis component board"></div></div>
+<div id="notice" role="status">Starter circuit ready. Hold W, A, S, D or Space to trace signals.</div>
+<div class="bench-footer"><div><span class="legend-dot input"></span> INPUT <span class="legend-dot hardware"></span> HARDWARE <span class="legend-dot logic"></span> LOGIC</div><span>● OUT → IN ●</span></div>
+<div class="inventory"><div class="inventory-heading"><span class="eyebrow">COMPONENT TRAY</span><span id="selectedHint">Choose a part, then a free cell</span></div><div id="tray"></div></div>
+<details id="wireDetails"><summary>Connections <span id="wireCount"></span></summary><div id="wireList"></div></details>
+</section>
+<section class="panel arena-panel"><div class="panel-heading"><div><span class="eyebrow">02 / PROVING GROUND</span><h2 id="roundTitle">Bout 01 <span>/ 03</span></h2></div><span id="arenaTag" class="tag amber">AWAITING LAUNCH</span></div>
+<div class="health-row"><div><span>YOU <b id="playerHp">100</b></span><div class="health-track"><i id="playerHealth"></i></div></div><span class="vs">VS</span><div class="enemy-health"><span>SPARROW AI <b id="enemyHp">65</b></span><div class="health-track"><i id="enemyHealth"></i></div></div></div>
+<div class="arena-wrap"><canvas id="arena" width="900" height="600" aria-label="Robot combat arena"></canvas><div id="overlay"><div class="overlay-card"><span class="eyebrow">READY WHEN YOU ARE</span><h3>Your wiring.<br>Your fighting chance.</h3><p>The starter circuit is connected.<br>Launch a bout, or change what each key does.</p><button id="launch" class="primary">Launch bout <span>↗</span></button></div></div></div>
+<div class="arena-tools"><span id="clock">00:00 / 01:30</span><button id="pauseButton" class="quiet small" disabled>Pause</button><button id="editButton" class="quiet small">Edit circuit</button><button id="retryButton" class="quiet small">Retry bout ↻</button></div>
+<div class="telemetry"><span class="eyebrow">LIVE SIGNALS</span><div><span id="driveRead">DRIVE <b>0</b></span><span id="turnRead">TURN <b>0</b></span><span id="fireRead">CANNON <b>OFF</b></span></div></div>
+<div class="controls"><span><kbd>W</kbd><kbd>S</kbd> Drive</span><span><kbd>A</kbd><kbd>D</kbd> Turn</span><span><kbd>SPACE</kbd> Fire</span><span class="muted">Starter mapping · rewiring changes behavior</span></div>
+</section></div>
+<footer><span>NO SIGNAL. NO ACTION. <span class="muted">Build controls that fit.</span></span><div><button id="restore" class="quiet small">Restore starter wiring</button><button id="newRun" class="quiet small">New run</button></div></footer>
+<details class="guide" id="guide"><summary>Field manual — wiring, placement & combat</summary><div class="guide-grid"><p><b>01 / Connect.</b> In Wire mode, click a card’s OUT port, then an IN port on another card. Each input accepts one wire; outputs can branch. Remove a connection below the board. Wires may cross and do not consume cells.</p><p><b>02 / Fit.</b> In Move mode, click a component then its new top-left cell. Components cannot overlap or enter cutaway corners. Remove returns a component to the tray and disconnects its wires. Logic and hardware use the same cells.</p><p><b>03 / Pilot.</b> W/S drive forward/reverse; A/D turn; Space fires with the starter wiring. Hold keys on the bench to see live pulses. Click outside buttons if needed. Your cannon fires in the robot’s facing direction. Purple shots are hostile.</p><p><b>04 / Grow.</b> Win to choose one salvage card before the next bout. A clock can automate an output; an OR relay combines two inputs; armor costs room and adds health. Three bouts complete a run. A loss lets you edit and retry. Escape pauses; switching tabs pauses combat.</p></div></details>
+</main><script type="module" src="app.js"></script></body></html>
